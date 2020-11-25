@@ -18,4 +18,4 @@ Giorgio Kersten, 1757974
  
 ## Usage
 
-De gebruiker kan de file executen en zal dan gepresenteert worden met de GUI, in deze GUI staan meerdere keuzes om data te bekijken en te analyseren.
+De gebruiker kan de file executen en zal dan gepresenteert worden met de GUI, in deze GUI staan straks meerdere keuzes om data te bekijken en te analyseren.
