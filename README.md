@@ -1,8 +1,6 @@
 # Steam Dashboard
 
 Met behulp van het Steam Dashboard is het mogelijk om verschillende soorten data overzichtelijk in kaart te brengen.
-(Wat er in zit, functie 1)
-(Wat er in zit, functie 2)
 
 ## SteamGroup11: 
 
