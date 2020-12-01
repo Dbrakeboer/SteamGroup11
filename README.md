@@ -1,6 +1,6 @@
 # Steam Dashboard
 
-Met behulp van het Steam Dashboard is het mogelijk om verschillende soorten data overzichtelijk in kaart te brengen.
+Met behulp van het Steam Dashboard is het mogelijk om het eerste spel vanuit de steam.json weer te geven.
 
 ## SteamGroup11: 
 
