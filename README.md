@@ -1,17 +1,34 @@
 # Steam Dashboard
 
-Met behulp van het Steam Dashboard is het mogelijk om het eerste spel vanuit de steam.json weer te geven.
+Het Steam Dashboard maakt het mogelijk om de gamestatistieken van u en uw kennissen in te zien.
+De applicatie bevat verder de volgende functies:
 
-## SteamGroup11: 
+...
 
-Daniel Brakeboer, 1782643 
 
-Diederik Roovers, 1779316 
+## Authors: 
 
-Jelle Hille, 1785577 
+Daniel Brakeboer - 1782643 
+Diederik Roovers - 1779316 
+Jelle Hille - 1785577 
+Giorgio Kersten - 1757974
 
-Giorgio Kersten, 1757974
+## Installation Requirements
+
+- Windows, macOS, Linux besturingssysteem
+- Python, (versie 3 wordt geadviseerd) (https://www.python.org/downloads/)
  
 ## Usage
 
-De gebruiker kan de file executen en zal dan gepresenteert worden met de GUI, in deze GUI staan straks meerdere keuzes om data te bekijken en te analyseren.
+Om de applicatie te gebruiken dient u het bestand "steamdashboard.py" te openen.
+Python zal de applicatie uitvoeren en het startscherm van Steam Dashboard wordt getoond. 
+Vervolgens kan er binnen de applicatie genavigeerd worden om de gewenste data zichtbaar te maken middels de hiervoor bestemde knoppen.
+
+## Support/Feedback
+
+Voor vragen of suggesties:
+
+- daniel.brakeboer@student.hu.nl
+- diederik.roovers@student.hu.nl
+- jelle.hille@student.hu.nl
+- giorgio.kersten@student.hu.nl
