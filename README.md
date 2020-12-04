@@ -2,11 +2,6 @@
 
 Het Steam Dashboard maakt het mogelijk om de gamestatistieken van u en uw kennissen in te zien.
 
-De applicatie bevat verder de volgende functies:
-
-...
-
-
 ## Authors: 
 
 Daniel Brakeboer - 1782643
@@ -29,6 +24,14 @@ Om de applicatie te gebruiken dient u het bestand "steamdashboard.py" te openen.
 Python zal de applicatie uitvoeren en het startscherm van het dashboard wordt getoond.
 
 Vervolgens kan er binnen de applicatie genavigeerd worden om de gewenste data zichtbaar te maken middels de hiervoor bestemde knoppen.
+
+## Roadmap
+
+Naar verwachting zullen in toekomstige versies onderstaande functies toegevoegd worden aan de applicatie:
+
+- Meest gespeelde games bij vrienden zichtbaar maken 
+- Populairste tijdstippen wanneer men games speelt zichtbaar maken
+- Tonen wanneer een kennis online/offline is
 
 ## Support/Feedback
 
