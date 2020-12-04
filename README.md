@@ -1,6 +1,7 @@
 # Steam Dashboard
 
 Het Steam Dashboard maakt het mogelijk om de gamestatistieken van u en uw kennissen in te zien.
+
 De applicatie bevat verder de volgende functies:
 
 ...
@@ -25,7 +26,7 @@ Giorgio Kersten - 1757974
 
 Om de applicatie te gebruiken dient u het bestand "steamdashboard.py" te openen.
 
-Python zal de applicatie uitvoeren en het startscherm van Steam Dashboard wordt getoond.
+Python zal de applicatie uitvoeren en het startscherm van het dashboard wordt getoond.
 
 Vervolgens kan er binnen de applicatie genavigeerd worden om de gewenste data zichtbaar te maken middels de hiervoor bestemde knoppen.
 
