@@ -8,9 +8,12 @@ De applicatie bevat verder de volgende functies:
 
 ## Authors: 
 
-Daniel Brakeboer - 1782643 
-Diederik Roovers - 1779316 
-Jelle Hille - 1785577 
+Daniel Brakeboer - 1782643
+
+Diederik Roovers - 1779316
+
+Jelle Hille - 1785577
+
 Giorgio Kersten - 1757974
 
 ## Installation Requirements
@@ -21,7 +24,9 @@ Giorgio Kersten - 1757974
 ## Usage
 
 Om de applicatie te gebruiken dient u het bestand "steamdashboard.py" te openen.
-Python zal de applicatie uitvoeren en het startscherm van Steam Dashboard wordt getoond. 
+
+Python zal de applicatie uitvoeren en het startscherm van Steam Dashboard wordt getoond.
+
 Vervolgens kan er binnen de applicatie genavigeerd worden om de gewenste data zichtbaar te maken middels de hiervoor bestemde knoppen.
 
 ## Support/Feedback
