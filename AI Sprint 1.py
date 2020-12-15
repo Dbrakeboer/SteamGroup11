@@ -2,6 +2,7 @@ import json
 import tkinter as tk 
 from tkinter import ttk 
 from tkinter import * 
+from operator import itemgetter
 
 def open_json():
     with open("steam.json", "r") as steam:
@@ -12,15 +13,10 @@ def first_game():
     games_data = open_json()
     print(games_data[0]['name'])
 
-def games_list(input):
+def games_list():
     games_data = open_json()
-    games_sorted = []
-    counter = 0
-    for i in games_data:
-        games_sorted.append(games_data[counter][input])
-        counter += 1
         
-    gesorteerd = sorted(games_sorted)
+    gesorteerd = sorted(games_data, key=itemgetter('name'))
     return gesorteerd
 
 def merge(lst, begin, mid, end): 
@@ -79,15 +75,15 @@ def show_dashboard():
     # This is the section of code which creates the gamelabel 
     gamelabel = Label(root, text='Placeholder label', bg='#1B2838', fg='white', font=('arial', 12, 'normal'))
     gamelabel.place(x=338, y=210)
-    updated_text = gesorteerd[0]
+    updated_text = gesorteerd[0]['name']
     gamelabel.configure(text = updated_text)
 
     root.mainloop()
 
 def sorted_games():
-    list_of_games = games_list('name')
+    list_of_games = games_list()
     n = len(list_of_games)
-    mergeSort(list_of_games, 0, n-1)
+    #mergeSort(list_of_games, 0, n-1)
 
     print(list_of_games[0])
 
