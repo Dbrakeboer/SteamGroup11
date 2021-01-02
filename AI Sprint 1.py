@@ -58,21 +58,21 @@ def mergeSort(lst,begin,end):
         mergeSort(lst, mid+1, end) 
         merge(lst, begin, mid, end)
 
-def games_list(sort_value):
+def games_list():
     games_data = open_json()
 
     tup_list = []
     counter = 0
     for i in games_data:
-        tup_list.append((games_data[counter][sort_value], games_data[counter]['appid']))
+        tup_list.append((games_data[counter]['name'], games_data[counter]['appid'], games_data[counter]['price']))
         counter += 1
 
     n = len(tup_list)    
     mergeSort(tup_list, 0, n-1)
     return tup_list
 
-def playerSummary():
-    api_player = 'http://api.steampowered.com/ISteamUser/GetPlayerSummaries/v0002/?key=9B2182C10BA7534CC1C7EC708C080A13&steamids=76561198028494198'
+def playerSummary(steamid):
+    api_player = 'http://api.steampowered.com/ISteamUser/GetPlayerSummaries/v0002/?key=9B2182C10BA7534CC1C7EC708C080A13&steamids={}'.format(steamid)
 
     json_player = requests.get(api_player).json()
     online = json_player['response']['players'][0]['personastate']
@@ -84,8 +84,11 @@ def playerSummary():
     elif online == 3:
         online = "Away"
     
-    welcome_message = "Welcome back {}, your current status = {}".format(account_name, online)
-    print(welcome_message)
+    playerinfo = [(account_name, online)]
+    
+    return playerinfo
+    #welcome_message = "Welcome back {}({}), your current status = {}".format(account_name, real_name, online)
+    #print(welcome_message)
 
 def ownedGamesByPlaytime():
     api_games = 'http://api.steampowered.com/IPlayerService/GetOwnedGames/v0001/?key=9B2182C10BA7534CC1C7EC708C080A13&steamid=76561198028494198&format=json'
@@ -109,7 +112,7 @@ def mostPlayed():
             while i[0] != all_games[counter][1]:
                 counter += 1
             else:
-                playtime.append((all_games[counter][0], int((i[1] / 60))))
+                playtime.append((all_games[counter][0], int((i[1] / 60)), all_games[counter][2]))
         except IndexError:
             pass
     nr_1 = playtime[0]
@@ -118,11 +121,43 @@ def mostPlayed():
     nr_4 = playtime[3]
     nr_5 = playtime[4]
 
-    print("Your most played game is {} for {} hours".format(nr_1[0], nr_1[1]))
-    print("Your 2nd most played game is {} for {} hours".format(nr_2[0], nr_2[1]))
-    print("Your 3rd most played game is {} for {} hours".format(nr_3[0], nr_3[1]))
-    print("Your 4th most played game is {} for {} hours".format(nr_4[0], nr_4[1]))
-    print("Your 5th most played game is {} for {} hours".format(nr_5[0], nr_5[1]))
+    #print("Your most played game is {} for {} hours".format(nr_1[0], nr_1[1]))
+    #print("Your 2nd most played game is {} for {} hours".format(nr_2[0], nr_2[1]))
+    #print("Your 3rd most played game is {} for {} hours".format(nr_3[0], nr_3[1]))
+    #print("Your 4th most played game is {} for {} hours".format(nr_4[0], nr_4[1]))
+    #print("Your 5th most played game is {} for {} hours".format(nr_5[0], nr_5[1]))
+    return playtime
+
+def accountValue():
+    list_of_games = mostPlayed()
+    total = 0
+    for i in list_of_games:
+        total += i[2]
+
+    print("Your account value is: {} euro's!".format(int(total)))
+
+def friendList():
+    api_friends = 'http://api.steampowered.com/ISteamUser/GetFriendList/v0001/?key=9B2182C10BA7534CC1C7EC708C080A13&steamid=76561198028494198&relationship=friend'
+
+    json_friends = requests.get(api_friends).json()
+    friends = []
+    for i in json_friends['friendslist']['friends']:
+        steamid = i['steamid']
+        playerinfo = playerSummary(steamid)
+        friends.append((playerinfo[0][0], playerinfo[0][1]))
+    
+    friends.sort(key=lambda x:x[1], reverse=True)
+    print(friends)
+
+def recentlyPlayed():
+    api_recently = 'http://api.steampowered.com/IPlayerService/GetRecentlyPlayedGames/v0001/?key=9B2182C10BA7534CC1C7EC708C080A13&steamid=76561198028494198&format=json'
+
+    json_recently = requests.get(api_recently).json()
+    recent_games = []
+    for i in json_recently['response']['games']:
+        recent_games.append((i['name'], round(i['playtime_2weeks'] / 60, 2)))
+    
+    print(recent_games)
 
 def show_dashboard():
     gesorteerd = games_list('name')
@@ -136,11 +171,11 @@ def show_dashboard():
     # This is the section of code which creates the gamelabel 
     gamelabel = Label(root, text='Placeholder label', bg='#1B2838', fg='white', font=('arial', 12, 'normal'))
     gamelabel.place(x=338, y=210)
-    updated_text = gesorteerd[0][1]
+    updated_text = gesorteerd[0][0]
     gamelabel.configure(text = updated_text)
 
     root.mainloop()
 
 
-
+playerSummary('76561198028494198')
 show_dashboard()
