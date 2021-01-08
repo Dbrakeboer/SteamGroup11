@@ -1,22 +1,21 @@
 from tkinter import *
 from aisprint1 import *
 from PIL import ImageTk, Image
-import ctypes
-
-splash_width = 750
-splash_height = 400
-
-user32 = ctypes.windll.user32
-screen_width = user32.GetSystemMetrics(78)
-screen_height = user32.GetSystemMetrics(79)
-
-x = (screen_width/2) - (splash_width/2)
-y = (screen_height/2) - (splash_height/2)
 
 test = playerSummary('76561198028494198')
 
 splash_root = Tk()
 splash_root.title('Steam Dashboard')
+
+splash_width = 750
+splash_height = 400
+
+screen_width = splash_root.winfo_screenwidth()
+screen_height = splash_root.winfo_screenheight()
+
+x = (screen_width/2) - (splash_width/2)
+y = (screen_height/2) - (splash_height/2)
+
 splash_root.geometry('%dx%d+%d+%d' % (splash_width, splash_height, x, y))
 splash_root.overrideredirect(True)
 splash_root.configure(bg='#1b2838')
