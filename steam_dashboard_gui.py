@@ -1,4 +1,3 @@
-from tkinter import *
 from aisprint1 import *
 from PIL import ImageTk, Image
 
@@ -36,20 +35,30 @@ def application():
     def showMenuFrame():
         most_played_frame.pack_forget()
         friend_list_frame.pack_forget()
+        recently_played_frame.pack_forget()
         main_menu_frame.pack(fill='both', expand=True)
         hideMenubar()
 
     def showMostPlayedFrame():
         main_menu_frame.pack_forget()
         friend_list_frame.pack_forget()
+        recently_played_frame.pack_forget()
         most_played_frame.pack(fill='both', expand=True)
         showMenubarMostPlayedGames()
 
     def showFriendListFrame():
         main_menu_frame.pack_forget()
         most_played_frame.pack_forget()
+        recently_played_frame.pack_forget()
         friend_list_frame.pack(fill='both', expand=True)
         showMenubarFriendList()
+
+    def showRecentlyPlayedGamesFrame():
+        main_menu_frame.pack_forget()
+        most_played_frame.pack_forget()
+        friend_list_frame.pack_forget()
+        recently_played_frame.pack(fill='both', expand=True)
+        showMenubarRecentlyPlayedGames()
 
     def hideMenubar():
         emptyMenu = Menu(root)
@@ -65,7 +74,7 @@ def application():
         menu_bar.add_command(label='Exit Dashboard', command=exitDashboard)
         menu_bar.add_command(label='Main Menu', command=showMenuFrame)
         menu_bar.add_command(label='Friend List', command=showFriendListFrame)
-        menu_bar.add_command(label='Recently Played Games')
+        menu_bar.add_command(label='Recently Played Games', command=showRecentlyPlayedGamesFrame)
 
     def showMenubarFriendList():
         menu_bar = Menu(root)
@@ -74,7 +83,7 @@ def application():
         menu_bar.add_command(label='Exit Dashboard', command=exitDashboard)
         menu_bar.add_command(label='Main Menu', command=showMenuFrame)
         menu_bar.add_command(label='Most Played Games', command=showMostPlayedFrame)
-        menu_bar.add_command(label='Recently Played Games')
+        menu_bar.add_command(label='Recently Played Games', command=showRecentlyPlayedGamesFrame)
 
     def showMenubarRecentlyPlayedGames():
         menu_bar = Menu(root)
@@ -110,7 +119,7 @@ def application():
     most_played_button.pack(pady=5, padx=150)
     friend_list_button = Button(main_menu_frame, text='Friend List', bg='#1b2838', fg='#c7d5e0', font='Arial 11 bold', width=20, activebackground='#66c0f4', activeforeground='#1b2838', command=showFriendListFrame)
     friend_list_button.pack(pady=5, padx=25)
-    recently_played_button = Button(main_menu_frame, text='Recently Played Games', bg='#1b2838', fg='#c7d5e0', font='Arial 11 bold', width=20, activebackground='#66c0f4', activeforeground='#1b2838')
+    recently_played_button = Button(main_menu_frame, text='Recently Played Games', bg='#1b2838', fg='#c7d5e0', font='Arial 11 bold', width=20, activebackground='#66c0f4', activeforeground='#1b2838', command=showRecentlyPlayedGamesFrame)
     recently_played_button.pack(pady=5, padx=30)
     exit_dashboard_button = Button(main_menu_frame, text='Exit Dashboard', bg='#1b2838', fg='#c7d5e0', font='Arial 11 bold', width=20, activebackground='#66c0f4', activeforeground='#1b2838', command=exitDashboard)
     exit_dashboard_button.pack(pady=5, padx=30)
@@ -126,6 +135,20 @@ def application():
     steam_dashboard_text_label2.pack()
     steam_dashboard_menu_text_label2 = Label(most_played_frame, text='Most Played Games', bg='#1b2838', fg='#c7d5e0', font='Arial 10 bold', borderwidth=2, width=20, relief='ridge')
     steam_dashboard_menu_text_label2.pack()
+
+    top5_text_label = Label(most_played_frame, text='MY TOP 5', bg='#1b2838', fg='#66c0f4', font='Arial 15 bold')
+    top5_text_label.pack(pady=(20, 0))
+
+    funfact_text_label = Label(most_played_frame, text='FUN FACT', bg='#1b2838', fg='#66c0f4', font='Arial 15 bold')
+    funfact_text_label.pack(pady=(50, 0))
+
+    playtime = mostPlayed()
+    playtime1 = playtime[0]
+    playtime2 = playtime[1]
+
+    account_value_label = Label(most_played_frame, text= playtime1 + '\n' + playtime2)
+    account_value_label.pack(pady=(80,0))
+
 
     friend_list_frame = Frame(root, bg='#1b2838')
     steam_logo3 = ImageTk.PhotoImage(Image.open("images\steam_logo.png"))
