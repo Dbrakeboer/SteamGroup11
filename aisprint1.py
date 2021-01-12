@@ -1,6 +1,7 @@
 import json
 import tkinter as tk 
 import requests
+import matplotlib.pyplot as plt
 from tkinter import ttk 
 from tkinter import * 
 
@@ -94,7 +95,7 @@ def playerSummary(steamid):
     #print(welcome_message)
 
 def ownedGamesByPlaytime():
-    api_games = 'http://api.steampowered.com/IPlayerService/GetOwnedGames/v0001/?key=9B2182C10BA7534CC1C7EC708C080A13&steamid=76561198028494198&format=json'
+    api_games = 'http://api.steampowered.com/IPlayerService/GetOwnedGames/v0001/?key=9B2182C10BA7534CC1C7EC708C080A13&steamid=76561198256031295&format=json'
 
     json_games = requests.get(api_games).json()
     owned_games = []
@@ -118,18 +119,26 @@ def mostPlayed():
                 playtime.append((all_games[counter][0], int((i[1] / 60)), all_games[counter][2]))
         except IndexError:
             pass
-    nr_1 = playtime[0]
-    nr_2 = playtime[1]
-    nr_3 = playtime[2]
-    nr_4 = playtime[3]
-    nr_5 = playtime[4]
 
-    #print("Your most played game is {} for {} hours".format(nr_1[0], nr_1[1]))
-    #print("Your 2nd most played game is {} for {} hours".format(nr_2[0], nr_2[1]))
-    #print("Your 3rd most played game is {} for {} hours".format(nr_3[0], nr_3[1]))
-    #print("Your 4th most played game is {} for {} hours".format(nr_4[0], nr_4[1]))
-    #print("Your 5th most played game is {} for {} hours".format(nr_5[0], nr_5[1]))
     return playtime
+
+def checkPlaytime():
+    playtime = mostPlayed()
+
+    game_outlier = []
+
+    hours_0 = 0
+    hours_500 = 0
+
+    for i in playtime:
+        if i[1] == 0:
+            hours_0 += 1
+        elif i[1] > 500:
+            hours_500 += 1
+    
+    game_outlier.append((hours_0, hours_500))
+
+    print(game_outlier)
 
 def accountValue():
     list_of_games = mostPlayed()
@@ -137,11 +146,11 @@ def accountValue():
     for i in list_of_games:
         total += i[2]
 
-    print("Your account value is: {} euro's!".format(int(total)))
+    #print("Your account value is: {} euro's!".format(int(total)))
+    return total
 
 def friendList():
     api_friends = 'http://api.steampowered.com/ISteamUser/GetFriendList/v0001/?key=9B2182C10BA7534CC1C7EC708C080A13&steamid=76561198028494198&relationship=friend'
-
     json_friends = requests.get(api_friends).json()
     friends = []
     for i in json_friends['friendslist']['friends']:
@@ -150,7 +159,8 @@ def friendList():
         friends.append((playerinfo[0][0], playerinfo[0][1]))
     
     friends.sort(key=lambda x:x[1], reverse=True)
-    print(friends)
+    #print(friends)
+    return friends
 
 def recentlyPlayed():
     api_recently = 'http://api.steampowered.com/IPlayerService/GetRecentlyPlayedGames/v0001/?key=9B2182C10BA7534CC1C7EC708C080A13&steamid=76561198028494198&format=json'
@@ -180,5 +190,66 @@ def recentlyPlayed():
     root.mainloop()
 
 
-playerSummary('76561198028494198')
+#playerSummary('76561198028494198')
 #show_dashboard()
+
+def friendChart():
+    activities = ['Online', 'Offline', 'Away', 'Snooze']
+
+    online = 0
+    offline = 0
+    away = 0
+    snooze = 0
+
+    friends = friendList()
+
+    for i in friends:
+        if i[1] == 'Online':
+            online += 1
+        elif i[1] == 'Offline':
+            offline += 1
+        elif i[1] == 'Away':
+            away += 1
+        else:
+            snooze += 1
+    
+    slices = [online, offline, away, snooze]
+
+    colors = ['green', 'red', 'orange', 'cyan']
+
+    plt.pie(slices, labels = activities, colors=colors,  
+        startangle=90, shadow = True, explode = (0.1, 0, 0, 0), 
+        radius = 1.2, autopct = '%1.1f%%') 
+    
+    # plotting legend 
+    plt.legend() 
+  
+    # showing the plot 
+    plt.show()
+
+def histoPlayed():
+    # frequencies 
+    hours = [] 
+    
+    games_list = mostPlayed()
+
+    for i in games_list:
+        hours.append(i[1])
+
+    # setting the ranges and no. of intervals 
+    range = (1, 500)
+    bins = 50  
+    
+    # plotting a histogram 
+    plt.hist(hours, bins, range, color = 'green', 
+            histtype = 'bar', rwidth = 0.8) 
+    
+    # x-axis label 
+    plt.xlabel('Hours played') 
+    # frequency label 
+    plt.ylabel('No. of games') 
+    # plot title 
+    plt.title('My histogram') 
+    
+    # function to show the plot 
+    plt.show() 
