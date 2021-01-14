@@ -3,6 +3,8 @@ import time
 GPIO.setmode( GPIO.BCM )
 GPIO.setwarnings( 0 )
 
+#GPIO pin 25, GND, 5v PWR moeten worden aangesloten voor servo.
+
 print( "servo wave" )
 
 def pulse( pin, delay1, delay2 ):
