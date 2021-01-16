@@ -21,7 +21,7 @@ Giorgio Kersten - 1757974
 
 ## Usage
 
-* Voor de beste ervaring plaatst u de afstandssensor naast uw scherm met de sensor naar u zelf gericht. 
+! Voor de beste ervaring plaatst u de afstandssensor naast uw scherm met de sensor naar u zelf gericht. !
 
 Na het installeren van bovenstaande benodigdheden kan "aisprint1.py" geopend worden via de gewenste IDE. Bovenaan de code kan het Steam ID ingevuld worden van de desbetreffende gebruiker. Zie hiervoor onderstaande afbeeldingen:
 
