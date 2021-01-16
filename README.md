@@ -26,8 +26,10 @@ Giorgio Kersten - 1757974
 Na het installeren van bovenstaande benodigdheden kan "aisprint1.py" geopend worden via de gewenste IDE. Bovenaan de code kan het Steam ID ingevuld worden van de desbetreffende gebruiker. Zie hiervoor onderstaande afbeeldingen:
 
 [Steam ID Finder](https://imgur.com/a/dFJpQH2)
+Ga naar https://steamidfinder.com/ en vul uw steam gebruikersnaam in en kopieer je steam ID (SteamID64).
 
 [Steam User ID wijzigen](https://imgur.com/a/xSSwXSL)
+Vervang het standaard ID met uw eigen ID.
 
 Nadat het gewenste Steam ID ingevuld is kunt u "steam_dashboard_gui.py" openen. Wanneer deze gestart wordt zal de servo activeren om aan te geven dat alles goed geinstalleerd is. Zodra de servo stopt zal het welkomstscherm getoond worden met de naam behorend bij het ingevulde Steam ID en de online status. De aangesloten ledstrip zal van kleur veranderen zodra de online status veranderd. 
 
